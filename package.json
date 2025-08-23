@@ -1,0 +1,19 @@
+{
+  "name": "oneweek-rent",
+  "private": true,
+  "packageManager": "pnpm@10.15.0",
+  "scripts": {
+    "dev:web": "nx run web:dev",
+    "dev:api": "nx run backend:start:dev",
+    "build": "nx run-many -t build",
+    "lint": "nx run-many -t lint",
+    "test": "nx run-many -t test",
+    "graph": "nx graph"
+  },
+  "devDependencies": {
+    "@nx/eslint": "^21.4.1",
+    "@nx/nest": "^21.4.1",
+    "@nx/next": "^21.4.1",
+    "nx": "21.4.1"
+  }
+}
