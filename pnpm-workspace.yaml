@@ -1,3 +1,14 @@
 packages:
   - "backend"
   - "web"
+  - "mobile"
+  - "infra"
+
+onlyBuiltDependencies:
+  - '@nestjs/core'
+  - '@parcel/watcher'
+  - '@tailwindcss/oxide'
+  - esbuild
+  - nx
+  - sharp
+  - unrs-resolver
