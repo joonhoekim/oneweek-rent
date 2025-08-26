@@ -101,3 +101,4 @@ next-env.d.ts
 
 ### Nx
 .nx
+test-output
