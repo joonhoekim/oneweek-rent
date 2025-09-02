@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: oneweek-rent-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: oneweek_rent_dev
+      POSTGRES_USER: dev_user
+      POSTGRES_PASSWORD: dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./services/postgres/init:/docker-entrypoint-initdb.d
+    networks:
+      - oneweek-rent-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: oneweek-rent-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - oneweek-rent-network
+
+  # MongoDB (NoSQL 필요시)
+  mongodb:
+    image: mongo:7
+    container_name: oneweek-rent-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin_password
+      MONGO_INITDB_DATABASE: oneweek_rent_dev
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - ./services/mongodb/init:/docker-entrypoint-initdb.d
+    networks:
+      - oneweek-rent-network
+
+  # Adminer (DB 관리도구)
+  adminer:
+    image: adminer:4-standalone
+    container_name: oneweek-rent-adminer
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    networks:
+      - oneweek-rent-network
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
+  redis_data:
+  mongodb_data:
+
+networks:
+  oneweek-rent-network:
+    driver: bridge

@@ -5,10 +5,18 @@
   "scripts": {
     "dev:web": "nx run web:dev",
     "dev:api": "nx run backend:start:dev",
+    "dev:full": "pnpm infra:dev:up && pnpm dev:api & pnpm dev:web",
     "build": "nx run-many -t build",
     "lint": "nx run-many -t lint",
     "test": "nx run-many -t test",
-    "graph": "nx graph"
+    "graph": "nx graph",
+    "infra:dev:up": "./infra/scripts/dev.sh up",
+    "infra:dev:down": "./infra/scripts/dev.sh down",
+    "infra:dev:restart": "./infra/scripts/dev.sh restart",
+    "infra:dev:logs": "./infra/scripts/dev.sh logs",
+    "infra:dev:status": "./infra/scripts/dev.sh status",
+    "infra:dev:clean": "./infra/scripts/dev.sh clean",
+    "infra:dev:reset": "./infra/scripts/dev.sh reset"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
