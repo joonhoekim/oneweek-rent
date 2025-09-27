@@ -6,3 +6,6 @@ export * from './lib/schemas';
 export * from './lib/app.router';
 export * from './lib/routers/user.router';
 export * from './lib/routers/rental.router';
+
+// 인증 관련 내보내기
+export * from './lib/auth';
